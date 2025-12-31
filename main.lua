@@ -1,28 +1,28 @@
-local Jugadores = juego:GetService("Jugadores")
+local Jugadores = juego:GetService(„Jugadores")
 local jugador = Jugadores.LocalPlayer
 local playerGui = jugador:WaitForChild(„PlayerGui")
 
-local función mostrar pantalla de bienvenida()
+local función más larga pantalla de bienvenida()
     local welcomeGui = Instancia.nueva(„ScreenGui")
- bienvenidoGui.Nombre = "Pantalla de bienvenida"
+ bienvenidoGui.Nombre = „Pantalla de bienvenida"
  bienvenidoGui.ResetOnSpawn = falso
  bienvenidoGui.DisplayOrder = 9999999
  welcomeGui.Parent = playerGui
     
-    local fondo = Instancia.new("Marco")
+    local fondo = Instancia.new(„Marco")
  fondo.Nombre = "Fondo"
  fondo.Tamaño = UDim2.new(1, 0, 1, 0)
- fondo.Posición = UDim2.new(0, 0, 0, 0)
+ fondo.Posicion = UDim2.new(0, 0, 0, 0)
  fondo.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
  fondo.TransparenciaDeFondo = 0,5
  fondo.BorderSizePixel = 0
  fondo.Padre = bienvenidoGui
     
     local welcomeFrame = Instancia.nueva("Marco")
- bienvenidoFrame.Name = "Marco de bienvenida"
+ bienvenidoFrame.Name = „Marco de bienvenida"
  welcomeFrame.Size = UDim2.new(0, 450, 0, 200)
  welcomeFrame.Position = UDim2.new(0,5, 0, 0.5, 0)
- welcomeFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+ welcomeFrame.AnchorPoint = Vector2.new(0,5, 0.5)
  welcomeFrame.BackgroundColor3 = Color3.fromRGB(57, 59, 61)
  bienvenidoFrame.BorderSizePixel = 0
  welcomeFrame.Parent = welcomeGui
