@@ -1,39 +1,39 @@
-local Jugadores = juego:GetService(„Jugadores")
-local jugador = Jugadores.LocalPlayer
-local playerGui = jugador:WaitForChild(„PlayerGui")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 
-local función más larga pantalla de bienvenida()
-    local welcomeGui = Instancia.nueva(„ScreenGui")
- bienvenidoGui.Nombre = „Pantalla de bienvenida"
- bienvenidoGui.ResetOnSpawn = falso
- bienvenidoGui.DisplayOrder = 9999999
- welcomeGui.Parent = playerGui
+local function showWelcomeScreen()
+    local welcomeGui = Instance.new("ScreenGui")
+    welcomeGui.Name = "WelcomeScreen"
+    welcomeGui.ResetOnSpawn = false
+    welcomeGui.DisplayOrder = 9999999
+    welcomeGui.Parent = playerGui
     
-    local fondo = Instancia.new(„Marco")
- fondo.Nombre = "Fondo"
- fondo.Tamaño = UDim2.new(1, 0, 1, 0)
- fondo.Posicion = UDim2.new(0, 0, 0, 0)
- fondo.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
- fondo.TransparenciaDeFondo = 0,5
- fondo.BorderSizePixel = 0
- fondo.Padre = bienvenidoGui
+    local backdrop = Instance.new("Frame")
+    backdrop.Name = "Backdrop"
+    backdrop.Size = UDim2.new(1, 0, 1, 0)
+    backdrop.Position = UDim2.new(0, 0, 0, 0)
+    backdrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    backdrop.BackgroundTransparency = 0.5
+    backdrop.BorderSizePixel = 0
+    backdrop.Parent = welcomeGui
     
-    local welcomeFrame = Instancia.nueva("Marco")
- bienvenidoFrame.Name = „Marco de bienvenida"
- welcomeFrame.Size = UDim2.new(0, 450, 0, 200)
- welcomeFrame.Position = UDim2.new(0,5, 0, 0.5, 0)
- welcomeFrame.AnchorPoint = Vector2.new(0,5, 0.5)
- welcomeFrame.BackgroundColor3 = Color3.fromRGB(57, 59, 61)
- bienvenidoFrame.BorderSizePixel = 0
- welcomeFrame.Parent = welcomeGui
+    local welcomeFrame = Instance.new("Frame")
+    welcomeFrame.Name = "WelcomeFrame"
+    welcomeFrame.Size = UDim2.new(0, 450, 0, 200)
+    welcomeFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+    welcomeFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+    welcomeFrame.BackgroundColor3 = Color3.fromRGB(57, 59, 61)
+    welcomeFrame.BorderSizePixel = 0
+    welcomeFrame.Parent = welcomeGui
     
-    local esquina = Instancia.nueva(„UICorner")
- esquina.CornerRadius = UDim.new(0, 12)
- esquina.Padre = welcomeFrame
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 12)
+    corner.Parent = welcomeFrame
     
-    local trazo = Instancia.nueva(„UIStroke")
- trazo.Color = Color3.fromRGB(138, 43, 226)
- trazo.Espesor = 3
+    local stroke = Instance.new("UIStroke")
+    stroke.Color = Color3.fromRGB(138, 43, 226)
+    stroke.Thickness = 3
     stroke.Transparency = 0
     stroke.Parent = welcomeFrame
     
@@ -333,111 +333,111 @@ local function initializeMainScript()
         for i = 1, 10 do
             floatingButton.BackgroundTransparency = 1 - (i * 0.1)
             floatingButton.TextTransparency = 1 - (i * 0.1)
- floatingStroke.Transparencia = 0.3 + (0.7 - (i* 0.07))
- esperar(0,03)
-        fin
-    fin
+            floatingStroke.Transparency = 0.3 + (0.7 - (i * 0.07))
+            wait(0.03)
+        end
+    end
     
-    local función reactivarBlackScreen()
-        si está arrastrando entonces
- está arrastrando = falso
-            retorno
-        fin
+    local function reactivateBlackScreen()
+        if isDragging then
+            isDragging = false
+            return
+        end
         
-        para yo = 1, 10 do
- botón flotante.TransparenciaDeFondo = i * 0.1
- botón flotante.Transparencia de texto = i * 0.1
- floatingStroke.Transparencia = 0.3 + (i * 0.07)
- esperar(0,02)
-        fin
+        for i = 1, 10 do
+            floatingButton.BackgroundTransparency = i * 0.1
+            floatingButton.TextTransparency = i * 0.1
+            floatingStroke.Transparency = 0.3 + (i * 0.07)
+            wait(0.02)
+        end
         
- botón flotante.Visible = falso
+        floatingButton.Visible = false
         
-        local newBlackFrame = Instancia.new("Frame")
- nuevoBlackFrame.Nombre = "Pantalla negra"
- nuevoBlackFrame.Size = UDim2.new(1, 0, 1, 0)
- nuevoBlackFrame.Position = UDim2.new(0, 0, 0, 0)
- newBlackFrame.AnchorPoint = Vector2.new(0, 0)
- nuevoBlackFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
- nuevoBlackFrame.BorderSizePixel = 0
- nuevoBlackFrame.ZIndex = 999999
- nuevoBlackFrame.Activo = verdadero
- nuevoBlackFrame.Parent = screenGui
+        local newBlackFrame = Instance.new("Frame")
+        newBlackFrame.Name = "BlackScreen"
+        newBlackFrame.Size = UDim2.new(1, 0, 1, 0)
+        newBlackFrame.Position = UDim2.new(0, 0, 0, 0)
+        newBlackFrame.AnchorPoint = Vector2.new(0, 0)
+        newBlackFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        newBlackFrame.BorderSizePixel = 0
+        newBlackFrame.ZIndex = 999999
+        newBlackFrame.Active = true
+        newBlackFrame.Parent = screenGui
         
- blackFrame = nuevoBlackFrame
+        blackFrame = newBlackFrame
         
-        local newCloseButton = Instancia.new("TextButton")
- nuevoBotónCerrar.Nombre = "Botón de cierre"
- nuevoBotónCerrar.Tamaño = UDim2.nuevo(0, 50, 0, 50)
- newCloseButton.Position = UDim2.new(1, -65, 0, 15)
- newCloseButton.BackgroundColor3 = Color3.fromRGB(138, 43, 226)
- nuevoBotónCerrar.BorderSizePixel = 0
- nuevoBotónCerrar.Texto = "×"
- newCloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
- newCloseButton.TextSize = 32
- newCloseButton.Font = Enum.Font.GothamBold
- nuevoBotónCerrar.AutoButtonColor = false
- nuevoBotónCerrar.ZIndex = 1000000
- nuevoBotónCerrar.Padre = screenGui
+        local newCloseButton = Instance.new("TextButton")
+        newCloseButton.Name = "CloseButton"
+        newCloseButton.Size = UDim2.new(0, 50, 0, 50)
+        newCloseButton.Position = UDim2.new(1, -65, 0, 15)
+        newCloseButton.BackgroundColor3 = Color3.fromRGB(138, 43, 226)
+        newCloseButton.BorderSizePixel = 0
+        newCloseButton.Text = "×"
+        newCloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        newCloseButton.TextSize = 32
+        newCloseButton.Font = Enum.Font.GothamBold
+        newCloseButton.AutoButtonColor = false
+        newCloseButton.ZIndex = 1000000
+        newCloseButton.Parent = screenGui
         
-        local newCorner = Instancia.new("UICorner")
- newCorner.CornerRadius = UDim.new(1, 0)
- nuevaEsquina.Padre = nuevoBotónCerrar
+        local newCorner = Instance.new("UICorner")
+        newCorner.CornerRadius = UDim.new(1, 0)
+        newCorner.Parent = newCloseButton
         
-        local newStroke = Instancia.new("UIStroke")
- newStroke.Color = Color3.fromRGB(80, 20, 120)
- newStroke.Espesor = 2
- newStroke.Transparencia = 0,3
- newStroke.Parent = nuevoBotónCerrar
+        local newStroke = Instance.new("UIStroke")
+        newStroke.Color = Color3.fromRGB(80, 20, 120)
+        newStroke.Thickness = 2
+        newStroke.Transparency = 0.3
+        newStroke.Parent = newCloseButton
         
- newCloseButton.MouseEnter:Connect(function()
- nuevoBotónCerrar:TweenSize(UDim2.new(0, 55, 0, 55), "Out", "Quad", 0.2, true)
+        newCloseButton.MouseEnter:Connect(function()
+            newCloseButton:TweenSize(UDim2.new(0, 55, 0, 55), "Out", "Quad", 0.2, true)
             newCloseButton.BackgroundColor3 = Color3.fromRGB(160, 60, 255)
         end)
         
         newCloseButton.MouseLeave:Connect(function()
- newCloseButton:TweenSize(UDim2.new(0, 50, 0, 50), "Out", "Quad", 0.2, true)
- newCloseButton.BackgroundColor3 = Color3.fromRGB(138, 43, 226)
- fin)
+            newCloseButton:TweenSize(UDim2.new(0, 50, 0, 50), "Out", "Quad", 0.2, true)
+            newCloseButton.BackgroundColor3 = Color3.fromRGB(138, 43, 226)
+        end)
         
- newCloseButton.MouseButton1Click:Connect(cerrarPantallaNegra)
- cerrarBotón = nuevoBotónCerrar
+        newCloseButton.MouseButton1Click:Connect(closeBlackScreen)
+        closeButton = newCloseButton
         
- newBlackFrame.InputBegan:Connect(función(entrada) fin)
- newBlackFrame.InputEnded:Connect(función(entrada) fin)
- fin
+        newBlackFrame.InputBegan:Connect(function(input) end)
+        newBlackFrame.InputEnded:Connect(function(input) end)
+    end
 
- cerrarBotón.BotónRatón1Clic:Conectar(cerrarPantallaNegra)
- botón flotante.Botón del mouse1Click:Conectar(reactivarPantalla negra)
+    closeButton.MouseButton1Click:Connect(closeBlackScreen)
+    floatingButton.MouseButton1Click:Connect(reactivateBlackScreen)
 
- reducirCalidadDeTextura()
+    reduceTextureQuality()
 
- local VirtualUser = juego:GetService("VirtualUser")
- local UserInputService = juego:GetService("UserInputService")
+    local VirtualUser = game:GetService("VirtualUser")
+    local UserInputService = game:GetService("UserInputService")
 
- jugador.Inactivo:Conectar(función()
- Usuario virtual: CaptureController()
- Usuario virtual:ClickButton2(Vector2.new())
- fin)
+    player.Idled:Connect(function()
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new())
+    end)
 
- función local showCreatorNotification()
- esperar(4)
+    local function showCreatorNotification()
+        wait(4)
         
- notificación localGui = Instance.new("ScreenGui")
- notificationGui.Name = "Notificación del creador"
- notificaciónGui.ResetOnSpawn = falso
- notificaciónGui.DisplayOrder = 1000000
- notificaciónGui.Parent = jugadorGui
+        local notificationGui = Instance.new("ScreenGui")
+        notificationGui.Name = "CreatorNotification"
+        notificationGui.ResetOnSpawn = false
+        notificationGui.DisplayOrder = 1000000
+        notificationGui.Parent = playerGui
         
- notifFrame local = Instance.new("Marco")
- notifFrame.Name = "Marco de notificación"
- notifFrame.Size = UDim2.new(0, 300, 0, 80)
- notifFrame.Position = UDim2.new(1, 320, 0, 20)
- notifFrame.BackgroundColor3 = Color3.fromRGB(57, 59, 61)
- notifFrame.BorderSizePixel = 0
- notifFrame.Parent = notificaciónGui
+        local notifFrame = Instance.new("Frame")
+        notifFrame.Name = "NotificationFrame"
+        notifFrame.Size = UDim2.new(0, 300, 0, 80)
+        notifFrame.Position = UDim2.new(1, 320, 0, 20)
+        notifFrame.BackgroundColor3 = Color3.fromRGB(57, 59, 61)
+        notifFrame.BorderSizePixel = 0
+        notifFrame.Parent = notificationGui
         
- esquina local = Instance.new("UICorner")
+        local corner = Instance.new("UICorner")
         corner.CornerRadius = UDim.new(0, 8)
         corner.Parent = notifFrame
         
@@ -539,59 +539,59 @@ local function initializeMainScript()
         pageButton.BackgroundColor3 = Color3.fromRGB(138, 43, 226)
         pageButton.BorderSizePixel = 0
         pageButton.Text = "🔗 Visitar Página"
- pageButton.TextColor3 = Color3.fromRGB(255, 255, 255)255, 255, 255)
- pageButton.TextSize = 1515
- pageButton.Font = Enum.Font.GothamBold
- pageButton.AutoButtonColor = falsofalso
- pageButton.Parent = pageNotifFrame
+        pageButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        pageButton.TextSize = 15
+        pageButton.Font = Enum.Font.GothamBold
+        pageButton.AutoButtonColor = false
+        pageButton.Parent = pageNotifFrame
         
- botón localEsquina = Instancia.new(„UICorner")local buttonCorner = Instancia.new("UICorner")
- botónCorner.CornerRadius = UDim.new(0, 6)0, 6)
- buttonCorner.Parent = pageButton
+        local buttonCorner = Instance.new("UICorner")
+        buttonCorner.CornerRadius = UDim.new(0, 6)
+        buttonCorner.Parent = pageButton
         
- pageButton.MouseEnter:Connect(función()función()
- pageButton.BackgroundColor3 = Color3.fromRGB(160, 60, 255)160, 60, 255)
- fin)fin)
+        pageButton.MouseEnter:Connect(function()
+            pageButton.BackgroundColor3 = Color3.fromRGB(160, 60, 255)
+        fin)
         
- pageButton.MouseLeave:Connect(función()función()
- pageButton.BackgroundColor3 = Color3.fromRGB(138, 43, 226)138, 43, 226)
- fin)fin)
+ pageButton.MouseLeave:Connect(function()
+ pageButton.BackgroundColor3 = Color3.fromRGB(138, 43, 226)
+ fin)
         
  pageButton.MouseButton1Click:Conectar(función()
- setclipboard("https://beacons.ai/krynexnoxis?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZnRzaAPBR_NleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaeW1AsmccYRxH-1Mw177EDxsEUaqygMOMspN9Q8k2y9TCwOqT2j_bYtCd8ltw_aem_0fXtJoZDXUUmnYa2enJQQA")"https://beacons.ai/krynexnoxis?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZnRzaAPBR_NleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaeW1AsmccYRxH-1Mw177EDxsEUaqygMOMspN9Q8k2y9TCwOqT2j_bYtCd8ltw_aem_0fXtJoZDXUUmnYa2enJQQA")
+ setclipboard("https://beacons.ai/krynexnoxis?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZnRzaAPBR_NleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaeW1AsmccYRxH-1Mw177EDxsEUaqygMOMspN9Q8k2y9TCwOqT2j_bYtCd8ltw_aem_0fXtJoZDXUUmnYa2enJQQA")
             
- botón de página.Texto = "✓ Enlace copiado""✓ Enlace copiado"
- pageButton.BackgroundColor3 = Color3.fromRGB(76, 175, 80)76, 175, 80)
- esperar(2)2)
- botón de página.Texto = "🔗 Visitar Página""🔗 Visitar Página"
- pageButton.BackgroundColor3 = Color3.fromRGB(138, 43, 226)138, 43, 226)
+ botón de página.Texto = "✓ Enlace copiado"
+ pageButton.BackgroundColor3 = Color3.fromRGB(76, 175, 80)
+ esperar(2)
+ botón de página.Texto = "🔗 Visitar Página"
+ pageButton.BackgroundColor3 = Color3.fromRGB(138, 43, 226)
  fin)
         
  pageNotifFrame:TweenPosition(
- UDim2.nuevo(1, -320, 0, 20),1, -320, 0, 20),
+ UDim2.nuevo(1, -320, 0, 20),
  Enum.EasingDirection.Out,
  Enum.EasingStyle.Back,
- 0,5,0,5,
- verdederadero
+            0,5,
+ verdedero
         )
         
- esperar(15)15)
+ esperar(15)
         
  pageNotifFrame:TweenPosition(
- UDim2.nuevo(1, 320, 0, 20),1, 320, 0, 20),
+ UDim2.nuevo(1, 320, 0, 20),
  Enum.EasingDirection.In,
  Enum.EasingStyle.Back,
- 0,4,0,4,
- verdederadero
+            0,4,
+ verdedero
         )
         
- esperar(0,5)0,5)
+ esperar(0,5)
  pageNotifGui: Destruir()
  fin
 
  spawn(mostrarNotificación de página del creador)
 
- imprimir("Script cargado: Pantalla negra activada, calidad de texturas reducida y Anti-AFK activado")"Script cargado: Pantalla negra activada, calidad de texturas reducida y Anti-AFK activado")
+ imprimir("Script cargado: Pantalla negra activada, calidad de texturas reducida y Anti-AFK activado")
 fin
 
 perder pantalla de bienvenida()
