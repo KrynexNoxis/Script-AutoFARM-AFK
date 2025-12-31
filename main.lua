@@ -1,39 +1,39 @@
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
+local Jugadores = juego:GetService("Jugadores")
+local jugador = Jugadores.LocalPlayer
+local playerGui = jugador:WaitForChild(„PlayerGui")
 
-local function showWelcomeScreen()
-    local welcomeGui = Instance.new("ScreenGui")
-    welcomeGui.Name = "WelcomeScreen"
-    welcomeGui.ResetOnSpawn = false
-    welcomeGui.DisplayOrder = 9999999
-    welcomeGui.Parent = playerGui
+local función mostrar pantalla de bienvenida()
+    local welcomeGui = Instancia.nueva(„ScreenGui")
+ bienvenidoGui.Nombre = "Pantalla de bienvenida"
+ bienvenidoGui.ResetOnSpawn = falso
+ bienvenidoGui.DisplayOrder = 9999999
+ welcomeGui.Parent = playerGui
     
-    local backdrop = Instance.new("Frame")
-    backdrop.Name = "Backdrop"
-    backdrop.Size = UDim2.new(1, 0, 1, 0)
-    backdrop.Position = UDim2.new(0, 0, 0, 0)
-    backdrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    backdrop.BackgroundTransparency = 0.5
-    backdrop.BorderSizePixel = 0
-    backdrop.Parent = welcomeGui
+    local fondo = Instancia.new("Marco")
+ fondo.Nombre = "Fondo"
+ fondo.Tamaño = UDim2.new(1, 0, 1, 0)
+ fondo.Posición = UDim2.new(0, 0, 0, 0)
+ fondo.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ fondo.TransparenciaDeFondo = 0,5
+ fondo.BorderSizePixel = 0
+ fondo.Padre = bienvenidoGui
     
-    local welcomeFrame = Instance.new("Frame")
-    welcomeFrame.Name = "WelcomeFrame"
-    welcomeFrame.Size = UDim2.new(0, 450, 0, 200)
-    welcomeFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-    welcomeFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-    welcomeFrame.BackgroundColor3 = Color3.fromRGB(57, 59, 61)
-    welcomeFrame.BorderSizePixel = 0
-    welcomeFrame.Parent = welcomeGui
+    local welcomeFrame = Instancia.nueva("Marco")
+ bienvenidoFrame.Name = "Marco de bienvenida"
+ welcomeFrame.Size = UDim2.new(0, 450, 0, 200)
+ welcomeFrame.Position = UDim2.new(0,5, 0, 0.5, 0)
+ welcomeFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+ welcomeFrame.BackgroundColor3 = Color3.fromRGB(57, 59, 61)
+ bienvenidoFrame.BorderSizePixel = 0
+ welcomeFrame.Parent = welcomeGui
     
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, 12)
-    corner.Parent = welcomeFrame
+    local esquina = Instancia.nueva(„UICorner")
+ esquina.CornerRadius = UDim.new(0, 12)
+ esquina.Padre = welcomeFrame
     
-    local stroke = Instance.new("UIStroke")
-    stroke.Color = Color3.fromRGB(138, 43, 226)
-    stroke.Thickness = 3
+    local trazo = Instancia.nueva(„UIStroke")
+ trazo.Color = Color3.fromRGB(138, 43, 226)
+ trazo.Espesor = 3
     stroke.Transparency = 0
     stroke.Parent = welcomeFrame
     
