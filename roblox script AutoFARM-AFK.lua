@@ -415,9 +415,26 @@ local function initializeMainScript()
     local VirtualUser = game:GetService("VirtualUser")
     local UserInputService = game:GetService("UserInputService")
 
-    player.Idled:Connect(function()
-        VirtualUser:CaptureController()
-        VirtualUser:ClickButton2(Vector2.new())
+    -- Anti-AFK seguro: no mueve al personaje. Comprueba velocidad antes de enviar la señal.
+    local antiAfkConnection
+    antiAfkConnection = player.Idled:Connect(function()
+        local ok, err = pcall(function()
+            local character = player.Character
+            if not character then return end
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            local hrp = character:FindFirstChild("HumanoidRootPart")
+            -- Si el jugador está vivo y prácticamente inmóvil, enviamos el click de VirtualUser
+            if humanoid and humanoid.Health > 0 then
+                if not hrp or (hrp.Velocity and hrp.Velocity.Magnitude < 1) then
+                    VirtualUser:CaptureController()
+                    -- Click derecho virtual sin coordenadas complejas para evitar mover cámara/personaje
+                    VirtualUser:ClickButton2(Vector2.new(0,0))
+                end
+            end
+        end)
+        if not ok then
+            warn("Anti-AFK error: "..tostring(err))
+        end
     end)
 
     local function showCreatorNotification()
@@ -591,7 +608,7 @@ local function initializeMainScript()
 
     spawn(showCreatorPageNotification)
 
-    print("Script cargado: Pantalla negra activada, calidad de texturas reducida y Anti-AFK activado")
+    print("Script cargado: Pantalla negra activada, calidad de texturas reducida y Anti-AFK (no mueve)")
 end
 
 showWelcomeScreen()
