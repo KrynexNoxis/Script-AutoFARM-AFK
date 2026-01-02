@@ -42,7 +42,7 @@ local function showWelcomeScreen()
     titleLabel.Size = UDim2.new(1, -40, 0, 80)
     titleLabel.Position = UDim2.new(0, 20, 0, 40)
     titleLabel.BackgroundTransparency = 1
-    titleLabel.Text = "Sistema AFK/AUTO FARM"
+    titleLabel.Text = "Sistema AUTO-FARM"
     titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     titleLabel.TextSize = 28
     titleLabel.Font = Enum.Font.GothamBold
@@ -412,31 +412,6 @@ local function initializeMainScript()
 
     reduceTextureQuality()
 
-    local VirtualUser = game:GetService("VirtualUser")
-    local UserInputService = game:GetService("UserInputService")
-
-    -- Anti-AFK seguro: no mueve al personaje. Comprueba velocidad antes de enviar la señal.
-    local antiAfkConnection
-    antiAfkConnection = player.Idled:Connect(function()
-        local ok, err = pcall(function()
-            local character = player.Character
-            if not character then return end
-            local humanoid = character:FindFirstChildOfClass("Humanoid")
-            local hrp = character:FindFirstChild("HumanoidRootPart")
-            -- Si el jugador está vivo y prácticamente inmóvil, enviamos el click de VirtualUser
-            if humanoid and humanoid.Health > 0 then
-                if not hrp or (hrp.Velocity and hrp.Velocity.Magnitude < 1) then
-                    VirtualUser:CaptureController()
-                    -- Click derecho virtual sin coordenadas complejas para evitar mover cámara/personaje
-                    VirtualUser:ClickButton2(Vector2.new(0,0))
-                end
-            end
-        end)
-        if not ok then
-            warn("Anti-AFK error: "..tostring(err))
-        end
-    end)
-
     local function showCreatorNotification()
         wait(4)
         
@@ -608,7 +583,7 @@ local function initializeMainScript()
 
     spawn(showCreatorPageNotification)
 
-    print("Script cargado: Pantalla negra activada, calidad de texturas reducida y Anti-AFK (no mueve)")
+    print("Script cargado: Pantalla negra activada y calidad de texturas reducida")
 end
 
 showWelcomeScreen()
