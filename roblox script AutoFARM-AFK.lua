@@ -42,7 +42,7 @@ local function showWelcomeScreen()
     titleLabel.Size = UDim2.new(1, -40, 0, 80)
     titleLabel.Position = UDim2.new(0, 20, 0, 40)
     titleLabel.BackgroundTransparency = 1
-    titleLabel.Text = "Sistema AUTO-FARM"
+    titleLabel.Text = "Sistema AFK/AUTO FARM"
     titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     titleLabel.TextSize = 28
     titleLabel.Font = Enum.Font.GothamBold
@@ -583,7 +583,7 @@ local function initializeMainScript()
 
     spawn(showCreatorPageNotification)
 
-    print("Script cargado: Pantalla negra activada y calidad de texturas reducida")
+    print("Script cargado: Pantalla negra activada y calidad de texturas reducida.")
 end
 
 showWelcomeScreen()
