@@ -55,7 +55,7 @@ local function showWelcomeScreen()
     subtitleLabel.Size = UDim2.new(1, -40, 0, 40)
     subtitleLabel.Position = UDim2.new(0, 20, 0, 120)
     subtitleLabel.BackgroundTransparency = 1
-    subtitleLabel.Text = "Universal"
+    subtitleLabel.Text = "Universal (Version 2.0.0"
     subtitleLabel.TextColor3 = Color3.fromRGB(138, 43, 226)
     subtitleLabel.TextSize = 20
     subtitleLabel.Font = Enum.Font.Gotham
